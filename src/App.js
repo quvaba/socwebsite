@@ -70,7 +70,7 @@ class App extends Component {
 
     return(
       <div className="App">
-        <NavBar json={pagesJson} loadPage={this.goToPage}/>
+        <PageNavBar json={pagesJson} loadPage={this.goToPage}/>
         {pageContents}
       </div>
     );
@@ -85,14 +85,14 @@ class App extends Component {
  *
  * [PROPS] loadPage - function that passes page clicked to App
  */
-class NavBar extends Component {
+class PageNavBar extends Component {
   constructor(props){
     super(props);
     this.handleClick = this.handleClick.bind(this);
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      isOpen: false
+      isOpen: true
     };
 
   }
@@ -119,11 +119,11 @@ class NavBar extends Component {
 
     return(
       <div className="NavBar">
-      <Navbar className="navbar-light" expand="md">
+      <Navbar className="navbar-light" expand="sm">
           <NavbarBrand href="/">Social Spaces</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
-              <Nav navbar>
+              <Nav className="ml-auto" navbar>
               {pages}
               </Nav>
           </Collapse>
@@ -570,18 +570,20 @@ class HomePage extends Component {
     );
 
     return(
-      <div>
+      <div className="HomePage">
         <img src={karriePic}></img>
-        <div>
-          Our goal is to investigate sociable systems for mediated communication.
-          This encompasses a wide range of areas:<br/>
+        <div className="HomeStatement">
+          <strong>Our goal</strong> is to investigate sociable systems for mediated communication.
+          This encompasses a wide range of areas:<br/><br/>
 
           ➭ Explore and build virtual-physical spaces for mediated communication<br/>
           ➭ Build communication objects that connect people and/or spaces<br/>
           ➭ Build interactive interfaces that connect spaces<br/>
-          ➭ Visualize and study how people interact within social spaces<br/>
+          ➭ Visualize and study how people interact within social spaces<br/><br/>
           And more!
         </div>
+
+        <hr />
 
         <div className="FeaturedProjects">
           <h2>Featured Projects</h2>
