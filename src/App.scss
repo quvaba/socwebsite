@@ -34,6 +34,10 @@ li {
   color: black;
 }
 
+#NavBarBrand .navbar-brand a{
+  font-size: 2em;
+}
+
 .NavOption {
   margin: .5em;
   font-size: calc(100vw / 35);
@@ -164,11 +168,19 @@ li {
 
 .HomePage{
   margin: 5em;
+  margin-top: 1em;
+}
+
+.HomeTop{
+  height: 400px;
+}
+
+.KarrieHomePic{
+  float:left;
 }
 
 .HomeStatement{
-  margin: 2em;
-  width: 50vw;
+  margin-top: 3em;
 }
 
 .FeaturedProjects{

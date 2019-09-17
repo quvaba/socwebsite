@@ -70,7 +70,7 @@ class App extends Component {
 
     return(
       <div className="App">
-        <PageNavBar json={pagesJson} loadPage={this.goToPage}/>
+        <NavBar json={pagesJson} loadPage={this.goToPage}/>
         {pageContents}
       </div>
     );
@@ -85,7 +85,7 @@ class App extends Component {
  *
  * [PROPS] loadPage - function that passes page clicked to App
  */
-class PageNavBar extends Component {
+class NavBar extends Component {
   constructor(props){
     super(props);
     this.handleClick = this.handleClick.bind(this);
@@ -120,7 +120,7 @@ class PageNavBar extends Component {
     return(
       <div className="NavBar">
       <Navbar className="navbar-light" expand="sm">
-          <NavbarBrand href="/">Social Spaces</NavbarBrand>
+          <NavbarBrand id="NavBarBrand" href="/">Social Spaces</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
@@ -571,16 +571,18 @@ class HomePage extends Component {
 
     return(
       <div className="HomePage">
-        <img src={karriePic}></img>
-        <div className="HomeStatement">
-          <strong>Our goal</strong> is to investigate sociable systems for mediated communication.
-          This encompasses a wide range of areas:<br/><br/>
+        <div className="HomeTop">
+          <span><img className="KarrieHomePic" src={karriePic}></img></span>
+          <span className="HomeStatement">
+            <strong>Our goal</strong> is to investigate sociable systems for mediated communication.
+            This encompasses a wide range of areas:<br/><br/>
 
-          ➭ Explore and build virtual-physical spaces for mediated communication<br/>
-          ➭ Build communication objects that connect people and/or spaces<br/>
-          ➭ Build interactive interfaces that connect spaces<br/>
-          ➭ Visualize and study how people interact within social spaces<br/><br/>
-          And more!
+            ➭ Explore and build virtual-physical spaces for mediated communication<br/>
+            ➭ Build communication objects that connect people and/or spaces<br/>
+            ➭ Build interactive interfaces that connect spaces<br/>
+            ➭ Visualize and study how people interact within social spaces<br/><br/>
+            And more!
+          </span>
         </div>
 
         <hr />
@@ -589,6 +591,7 @@ class HomePage extends Component {
           <h2>Featured Projects</h2>
           {projList}
         </div>
+
       </div>
 
     );
