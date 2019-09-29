@@ -349,7 +349,7 @@ class Publication extends Component {
     return(
       <div className="Publication">
         <a href={this.props.url} className="PublicationTitle">{this.props.title}</a>
-        <div>{this.props.conference}</div>
+        <span>{this.props.conference}</span>
         <div>{authorList}</div>
       </div>
     );

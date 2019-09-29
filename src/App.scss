@@ -32,15 +32,20 @@ li {
   text-align: left;
   font-family: "Montserrat";
   color: black;
+  display: grid;
 }
 
 #NavBarBrand .navbar-brand a{
   font-size: 2em;
 }
 
+.NavBar{
+  text-align: center;
+}
+
 .NavOption {
   margin: .5em;
-  font-size: calc(100vw / 35);
+  font-size: calc(100vw / 40);
   cursor: pointer;
   text-transform: uppercase;
   &:hover {
@@ -126,7 +131,7 @@ li {
 }
 
 .PublicationTitle {
-  font-size: 1.5em;
+  font-size: 1.1em;
   border-bottom: 1px solid black;
   color: $main-blue;
 }
@@ -197,7 +202,7 @@ li {
   }
 
   to {
-    text-shadow: -4px -4px $main-blue;
+    text-shadow: -3px -3px $main-blue;
   }
 }
 
