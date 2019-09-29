@@ -18,6 +18,7 @@ import karriePic from './data/mit-karrie.jpg';
 import Grid from '@material-ui/core/Grid';
 import {Nav, Navbar, NavbarBrand, NavbarToggler, Collapse} from 'reactstrap';
 
+import { PeopleList, PublicationList, KarrieCV, CourseList } from './components/ListComponents';
 
 /**
  * App - contains everything. Wraps a NavBar and a page contents.
@@ -188,52 +189,7 @@ class ListPage extends Component {
 
     switch (this.props.pageType) {
       case "People":
-        let people = this.props.json.entries;
-        let currentPeople;
-        let alumniPeople;
-        currentPeople = people.filter(list => {
-          return list.status.toLowerCase().includes("current");
-        });
-        alumniPeople = people.filter(list => {
-          return list.status.toLowerCase().includes("alum");
-        });
-        entryList =
-        <Grid container justify="center">
-          <Grid item xs={10} sm={8} lg={6}>
-           <div className="StudentList">Current Students</div>
-            <Grid container className="People" justify="flex-start" spacing={16}>
-              {currentPeople.map(person => (
-                <Grid key={people.indexOf(person)} item xs={12} sm={6} md={3}>
-                  <Person
-                    name={person.name}
-                    pageUrl={person.pageUrl}
-                    photoUrl={person.photoUrl}
-                    status={person.status}
-                    degree={person.degree}
-                  />
-                </Grid>
-              ))}
-            </Grid>
-            <div className="StudentList">Alumni</div>
-            <Grid container className="People" justify="flex-start" spacing={16}>
-              {alumniPeople.map(person => (
-                <Grid key={people.indexOf(person)} item xs={12} sm={6} md={3}>
-                  <Person
-                    name={person.name}
-                    pageUrl={person.pageUrl}
-                    photoUrl={person.photoUrl}
-                    status={person.status}
-                    degree={person.degree}
-                    currentRole={person.currentRole}
-                    gradYear={person.gradYear}
-                  />
-                </Grid>
-              ))}
-            </Grid>
-          </Grid>
-        </Grid>
-
-
+        entryList = <PeopleList json={this.props.json} />;
         break;
 
       case "Projects":
@@ -260,69 +216,15 @@ class ListPage extends Component {
         break;
 
       case "Publications":
-        let publications = this.props.json.entries;
-        publications.sort((a, b) => (a.year < b.year) ? 1 : -1);
-
-        entryList =
-          <Grid container justify="center">
-            <Grid item xs={10} sm={8} md={8} lg={6}>
-              {publications.map(
-                (publication) => <li key={publications.indexOf(publication)}>
-                              <Publication
-                                title={publication.title}
-                                year={publication.year}
-                                conference={publication.conference}
-                                url={publication.url}
-                                authors={publication.authorIds}
-                                awards={publication.awards}
-                              />
-                           </li>
-              )}
-            </Grid>
-          </Grid>
+        entryList = <PublicationList json={this.props.json} />
         break;
 
       case "Karrie":
-        let karrieinfo = this.props.json.entries;
-        entryList =
-        <Grid container justify="center">
-        <Grid item xs={12} sm={11} md={8} lg={6}>
-          {karrieinfo.map(
-          (karrie) => <li key={karrieinfo.indexOf(karrie)}>
-                        <Karrie
-                          name={karrie.name}
-                          photoUrl={karrie.photoUrl}
-                          position={karrie.position}
-                          email={karrie.email}
-                          address={karrie.address}
-                          phone={karrie.phone}
-                          awards={karrie.awards}
-                        />
-                     </li>
-        )}
-         </Grid>
-        </Grid>
+        entryList = <KarrieCV json={this.props.json} />
         break;
 
       case "Courses":
-        let courses = this.props.json.entries;
-        entryList =
-        <Grid container justify="center">
-        <Grid item xs={10} sm={8} md={8} lg={6}>
-        {courses.map(
-          (course) => <li key={courses.indexOf(course)}>
-                        <Course
-                          title={course.title}
-                          schedule={course.schedule}
-                          abbrev={course.abbrev}
-                          url={course.url}
-                          description={course.description}
-                          prior_versions={course.prior_versions}
-                        />
-                     </li>
-        )}
-        </Grid>
-        </Grid>
+        entryList = <CourseList json={this.props.json} />
         break;
 
       default:
@@ -334,60 +236,6 @@ class ListPage extends Component {
     );
   }
 }
-
-
-/*
- * Publication - An individual publication object
- *
- * [PROPS] title, year, conference, url, authors (array), awards
- */
-class Publication extends Component {
-  render(){
-    let authorList = getMatchingAuthors(peopleJson, this.props.authors);
-    // sort publications by year
-
-    return(
-      <div className="Publication">
-        <a href={this.props.url} className="PublicationTitle">{this.props.title}</a>
-        <span>{this.props.conference}</span>
-        <div>{authorList}</div>
-      </div>
-    );
-  }
-}
-
-
-/* Person - An individual person object
- *
- * [PROPS] name, pageUrl, photoUrl, status, degree
- */
-class Person extends Component {
-  render(){
-    return(
-      <span className="Person">
-        <div className="PeopleImageContainer">
-          <img className="PersonImage" src={this.props.photoUrl} />
-        </div>
-        <div>
-          {this.props.pageUrl.length > 0 ?
-          (<a href={this.props.pageUrl}>{this.props.name} </a>):
-          (<span>{this.props.name}</span>)
-        }
-        </div>
-        <div>{this.props.degree} {this.props.gradYear ?
-          (<span>{this.props.gradYear}</span>) :
-          (<span></span>)
-          }
-        {this.props.currentRole ?
-          (<div>Now at <b>{this.props.currentRole}</b></div>):
-          (<span></span>)
-        }
-        </div>
-      </span>
-    );
-  }
-}
-
 
 /* Project - An individual project object.
  *
@@ -421,88 +269,6 @@ class Project extends Component {
   }
 
 }
-
-
-/* Karrie - Karrie's CV
- *
- * [PROPS] name, position, email, phone, awards
- */
-class Karrie extends Component {
-  render(){
-
-    return(
-      <div>
-          <div className="KarrieIntroContainer">
-            <span className="KarrieIntro">
-                <img className="PersonImage" src={this.props.photoUrl} />
-            </span>
-            <span className="KarrieIntro">
-                <span>
-                  <div id="KarrieText">{this.props.name}</div>
-                  <div>{this.props.position}</div>
-                  <div className="InfoSpacing">{this.props.email}</div>
-                  <div className="InfoSpacing">
-                    {this.props.address.map(addressLine =>
-                      <div> {addressLine} </div>
-                    )}
-                  </div>
-                  <div className="InfoSpacing">{this.props.phone}</div>
-                </span>
-            </span>
-          </div>
-
-          <div className="Awards"> Awards </div>
-          <div className="Awards">
-          {this.props.awards.map( award =>
-              <div> {award} </div>
-            )
-          }
-          </div>
-
-      </div>
-    );
-  }
-}
-
-
-/* Course - Page full of social spaces courses.
- *
- * [PROPS] url, title, abbrev, schedule, description
- */
-class Course extends Component {
-  render(){
-    return(
-      <div>
-
-       { this.props.url ?
-        (<div><a href={this.props.url}>{this.props.title}</a></div>) :
-        (<div>{this.props.title} ({this.props.abbrev})</div>)
-       }
-
-        <div><span>{this.props.abbrev}</span></div>
-        <div><span>{this.props.schedule}</span></div>
-        <div><span>{this.props.description}</span></div>
-
-       {this.props.prior_versions.length > 0 ?
-        (
-          <div>Prior versions of the course
-
-            {this.props.prior_versions.map(priorVersion =>
-                priorVersion.url ?
-                (<span> - <a href={priorVersion.url}> {priorVersion.year} </a> </span>) :
-                (<span> - {priorVersion.year} </span>)
-                )
-            }
-
-          </div>
-        ) :
-        (<div></div>)
-       }
-      </div>
-    );
-  }
-}
-
 
 /* ProjectPage - An individual project's page.
  *
