@@ -18,7 +18,7 @@ import karriePic from './data/mit-karrie.jpg';
 import Grid from '@material-ui/core/Grid';
 import {Nav, Navbar, NavbarBrand, NavbarToggler, Collapse} from 'reactstrap';
 
-import { PeopleList, PublicationList, KarrieCV, CourseList } from './components/ListComponents';
+import { PeopleList, PublicationList, KarrieCV, CourseList, ProjectList } from './components/ListComponents';
 
 /**
  * App - contains everything. Wraps a NavBar and a page contents.
@@ -193,26 +193,8 @@ class ListPage extends Component {
         break;
 
       case "Projects":
-        let projects = this.props.json.entries;
-        projects.sort((a, b) => (a.startYear < b.startYear) ? 1 : -1);
-
-        entryList =
-        <Grid container justify="center">
-        <Grid item xs={10} sm={8} md={8} lg={6}>
-          {projects.map(
-          (project) => <li key={projects.indexOf(project)}>
-                        <Project
-                          title={project.title}
-                          authors={project.authorIds}
-                          description={project.description}
-                          publications={project.publications}
-                          onClick={this.handleClick}
-                          id={project.projectId}
-                        />
-                     </li>
-        )}
-         </Grid>
-        </Grid>
+        entryList = <ProjectList json={this.props.json}
+                                 onClick={this.handleClick}/>
         break;
 
       case "Publications":
@@ -237,38 +219,6 @@ class ListPage extends Component {
   }
 }
 
-/* Project - An individual project object.
- *
- * [PROPS] title, description, author, id
- */
-class Project extends Component {
-  constructor(props){
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick(){
-    this.props.onClick(this.props.id);
-  }
-
-  applyCharCap(description){
-    let short = description;
-    if (short.length > 350){
-      short = short.substring(1, 350) + "...";
-    }
-    return short;
-  }
-
-  render(){
-    return(
-      <div>
-        <div onClick={this.handleClick} className="ProjectTitle">{this.props.title}</div>
-        <div>{this.applyCharCap(this.props.description)}</div>
-      </div>
-    );
-  }
-
-}
 
 /* ProjectPage - An individual project's page.
  *
@@ -283,7 +233,7 @@ class ProjectPage extends Component {
     });
 
     targetEntry = targetEntry[0];
-    let authorList = getMatchingAuthors(peopleJson, targetEntry.authorIds);
+    let authorList = getMatchingAuthors(targetEntry.authorIds);
     let publicationList = getMatchingPublications(id, publicationsJson);
 
     let bodyList = targetEntry.body.map(

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Person } from './ListItemComponents/Person';
+import { Project } from './ListItemComponents/Project';
 import { Publication } from './ListItemComponents/Publication';
 import { Karrie } from './ListItemComponents/Karrie';
 import { Course } from './ListItemComponents/Course';
@@ -66,6 +67,35 @@ export const PeopleList = (props) => {
 
 PeopleList.propTypes = {
   json: PropTypes.object.isRequired
+};
+
+export const ProjectList = (props) => {
+  let projects = props.json.entries;
+  projects.sort((a, b) => (a.startYear < b.startYear) ? 1 : -1);
+
+  return(
+    <Grid container justify="center">
+      <Grid item xs={10} sm={8} md={8} lg={6}>
+        {projects.map(
+        (project) => <li key={projects.indexOf(project)}>
+                      <Project
+                        title={project.title}
+                        authors={project.authorIds}
+                        description={project.description}
+                        publications={project.publications}
+                        onClick={props.onClick}
+                        id={project.projectId}
+                      />
+                   </li>
+      )}
+       </Grid>
+    </Grid>
+  );
+}
+
+ProjectList.propTypes = {
+  json: PropTypes.object.isRequired,
+  onClick: PropTypes.func.isRequired
 };
 
 
