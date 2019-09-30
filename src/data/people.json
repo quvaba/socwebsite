@@ -44,7 +44,7 @@
       "netId": "dphuang2",
       "status": "alumni",
       "degree": "BS",
-      "photoUrl": "http://social.cs.uiuc.edu/images/people%20pics/noimage.gif",
+      "photoUrl": "",
       "name": "Dylan Huang",
       "pageUrl": "https://dylanhuang.com/",
       "gradYear": 2018,
@@ -56,7 +56,7 @@
       "degree": "PhD",
       "photoUrl": "http://social.cs.uiuc.edu/images/people%20pics/nikita.jpg",
       "name": "Nikita Spirin",
-      "pageUrl": "",
+      "pageUrl": "/",
       "gradYear": 2017,
       "currentRole": ""
     },

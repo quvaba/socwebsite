@@ -13,10 +13,7 @@ import {getMatchingAuthors} from './utils/utils.js'
 import {getMatchingPublications} from './utils/utils.js'
 import {getTopPublications} from './utils/utils.js'
 
-import karriePic from './data/mit-karrie.jpg';
-
 import Grid from '@material-ui/core/Grid';
-import {Nav, Navbar, NavbarBrand, NavbarToggler, Collapse} from 'reactstrap';
 
 import { PeopleList, PublicationList, KarrieCV, CourseList, ProjectList } from './components/ListComponents';
 
@@ -120,15 +117,10 @@ class NavBar extends Component {
 
     return(
       <div className="NavBar">
-      <Navbar className="navbar-light" expand="sm">
-          <NavbarBrand id="NavBarBrand" href="/">Social Spaces</NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
-              <Nav className="ml-auto" navbar>
-              {pages}
-              </Nav>
-          </Collapse>
-        </Navbar>
+          <div className="NavBrand">
+            <a href="/"> [ SOCIAL SPACES ] </a>
+          </div>
+          {pages}
       </div>
     );
 
@@ -252,9 +244,9 @@ class ProjectPage extends Component {
             <div className="ProjectPageTitle"> {targetEntry.title} </div>
             <div> {authorList} </div>
             <div> {publicationList} </div>
-            <img src={targetEntry.imageUrls[0]}/>
+            <img src={targetEntry.imageUrls[0]} className="ProjectPageImage"/>
             {bodyList}
-            <img src={targetEntry.imageUrls[1]}/>
+            <img src={targetEntry.imageUrls[1]} className="ProjectPageImage"/>
             {targetEntry.publications}
           </Grid>
         </Grid>
@@ -288,7 +280,7 @@ class HomePage extends Component {
     return(
       <div className="HomePage">
         <div className="HomeTop">
-          <span><img className="KarrieHomePic" src={karriePic}></img></span>
+          <span><div className="KarrieHomePic"></div></span>
           <span className="HomeStatement">
             <strong>Our goal</strong> is to investigate sociable systems for mediated communication.
             This encompasses a wide range of areas:<br/><br/>

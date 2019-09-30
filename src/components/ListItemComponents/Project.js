@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import DefaultPic from '../../data/siebel.jpg';
 
 export const Project = (props) => {
 
@@ -16,9 +17,16 @@ export const Project = (props) => {
   }
 
   return(
-    <div>
-      <div onClick={handleClick} className="ProjectTitle">{props.title}</div>
-      <div>{applyCharCap(props.description)}</div>
+    <div className="Project">
+      {
+        props.imageUrls.length > 0
+        ? (<img className="ProjectImage" src={props.imageUrls[0]} />)
+        : (<img className="ProjectImage" src={DefaultPic} />)
+      }
+      <span className="ProjectInfo">
+        <div onClick={handleClick} className="ProjectTitle">{props.title}</div>
+        <div>{applyCharCap(props.description)}</div>
+      </span>
     </div>
   );
 }
@@ -27,7 +35,7 @@ Project.propTypes = {
   title: PropTypes.string.isRequired,
   authors: PropTypes.array.isRequired,
   description: PropTypes.string.isRequired,
-  // photoUrl: PropTypes.string,
+  imageUrls: PropTypes.array,
   publications: PropTypes.array.isRequired,
   onClick: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,

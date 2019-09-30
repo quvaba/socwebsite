@@ -82,6 +82,7 @@ export const ProjectList = (props) => {
                         title={project.title}
                         authors={project.authorIds}
                         description={project.description}
+                        imageUrls={project.imageUrls}
                         publications={project.publications}
                         onClick={props.onClick}
                         id={project.projectId}
@@ -110,6 +111,8 @@ export const PublicationList = (props) => {
           (publication) => <li key={publications.indexOf(publication)}>
                         <Publication
                           title={publication.title}
+                          photoUrl={publication.photoUrl}
+                          description={publication.description}
                           year={publication.year}
                           conference={publication.conference}
                           url={publication.url}

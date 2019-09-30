@@ -8,7 +8,8 @@ export const Publication = (props) => {
   return(
     <div className="Publication">
       <a href={props.url} className="PublicationTitle">{props.title}</a>
-      <span>{props.conference}</span>
+      <span className="PublicationConference">{props.conference}</span>
+      <div className="PublicationDescription">{props.description}</div>
       <div>{authorList}</div>
     </div>
   );
@@ -17,7 +18,9 @@ export const Publication = (props) => {
 
 Publication.propTypes = {
   title: PropTypes.string.isRequired,
-  year: PropTypes.string.isRequired,
+  photoUrl: PropTypes.string,
+  description: PropTypes.string.isRequired,
+  year: PropTypes.number.isRequired,
   conference: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
   authors: PropTypes.array.isRequired,

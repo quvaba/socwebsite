@@ -1,16 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import DefaultPic from '../../data/staircase.png'
 
 export const Person = (props) => {
 
     return(
       <span className="Person">
         <div className="PeopleImageContainer">
-          <img className="PersonImage" src={props.photoUrl} />
+          {
+            props.photoUrl.length > 0
+            ? (<img className="PersonImage" src={props.photoUrl} />)
+            : (<img className="PersonImage" src={DefaultPic} />)
+          }
         </div>
         <div>
           {props.pageUrl.length > 0 ?
-          (<a href={props.pageUrl}>{props.name} </a>):
+          (<a href={props.pageUrl} className="PersonName">{props.name} </a>):
           (<span>{props.name}</span>)
         }
         </div>
