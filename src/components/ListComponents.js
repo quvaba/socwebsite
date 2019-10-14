@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { Person } from './ListItemComponents/Person';
 import { Project } from './ListItemComponents/Project';
 import { Publication } from './ListItemComponents/Publication';
-import { Karrie } from './ListItemComponents/Karrie';
 import { Course } from './ListItemComponents/Course';
 
 import {getMatchingPublications} from '../utils/utils.js'
@@ -127,36 +126,6 @@ export const PublicationList = (props) => {
 }
 
 PublicationList.propTypes = {
-  json: PropTypes.object.isRequired
-};
-
-
-export const KarrieCV = (props) => {
-  let karrieinfo = props.json.entries;
-
-  return(
-    <Grid container justify="center">
-    <Grid item xs={12} sm={11} md={8} lg={6}>
-      {karrieinfo.map(
-      (karrie) => <li key={karrieinfo.indexOf(karrie)}>
-                    <Karrie
-                      name={karrie.name}
-                      photoUrl={karrie.photoUrl}
-                      position={karrie.position}
-                      email={karrie.email}
-                      address={karrie.address}
-                      phone={karrie.phone}
-                      awards={karrie.awards}
-                    />
-                 </li>
-    )}
-     </Grid>
-    </Grid>
-  );
-
-}
-
-KarrieCV.propTypes = {
   json: PropTypes.object.isRequired
 };
 

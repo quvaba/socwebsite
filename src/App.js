@@ -15,7 +15,7 @@ import {getTopPublications} from './utils/utils.js'
 
 import Grid from '@material-ui/core/Grid';
 
-import { PeopleList, PublicationList, KarrieCV, CourseList, ProjectList } from './components/ListComponents';
+import { PeopleList, PublicationList, CourseList, ProjectList } from './components/ListComponents';
 
 /**
  * App - contains everything. Wraps a NavBar and a page contents.
@@ -193,10 +193,6 @@ class ListPage extends Component {
         entryList = <PublicationList json={this.props.json} />
         break;
 
-      case "Karrie":
-        entryList = <KarrieCV json={this.props.json} />
-        break;
-
       case "Courses":
         entryList = <CourseList json={this.props.json} />
         break;
@@ -280,7 +276,6 @@ class HomePage extends Component {
     return(
       <div className="HomePage">
         <div className="HomeTop">
-          <span><div className="KarrieHomePic"></div></span>
           <span className="HomeStatement">
             <strong>Our goal</strong> is to investigate sociable systems for mediated communication.
             This encompasses a wide range of areas:<br/><br/>
