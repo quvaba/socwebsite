@@ -1,9 +1,11 @@
 import React from 'react';
+import peopleJson from '../data/people.json';
 
 // Returns a JSX div of spans of authors that match the netIds given
 // [PARAMS] peopleJson - the json to find matching data from
 //          netIds - the array of netIds to be matched
-export function getMatchingAuthors(peopleJson, netIds){
+export function getMatchingAuthors(netIds){
+  console.log(netIds);
   let allAuthors = peopleJson.entries;
   let entryAuthors = allAuthors.filter(function(value, index, arr){
     return (netIds.includes(value.netId));

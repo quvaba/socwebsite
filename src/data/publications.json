@@ -2,39 +2,51 @@
   "entries": [
     {
       "title": "Understanding Identity Presentation in Medical Crowdfunding",
+      "photoUrl": "",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       "projectId":"medcrowdfunding",
       "year": 2018,
       "conference": "CHI 2018",
       "url": "http://social.cs.uiuc.edu/papers/Kim-CHI18.pdf",
       "authorIds": ["jgkim2", "hkong6", "kkarahal"],
-      "awards": []
+      "awards": [],
+      "themes": []
     },
     {
       "title": "Effects of Socially Stigmatized Crowdfunding Campaigns in Shaping Opinions",
+      "photoUrl": "",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       "projectId":"stigma_opinion",
       "year": 2018,
       "conference": "CHI 2018",
       "url": "http://social.cs.uiuc.edu/papers/StigmatizedCrowdfunding.pdf",
       "authorIds": ["sdey4", "kkarahal", "wfu"],
-      "awards": ["Honorable Mention"]
+      "awards": ["Honorable Mention"],
+      "themes": []
     },
     {
       "title": "A Comparative Study of Visualizations with Different Granularities of Behavior for Communicating about Autism",
+      "photoUrl": "",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       "projectId":"plexlines",
       "year": 2018,
       "conference": "CSCW 2018",
       "url": "http://social.cs.uiuc.edu/papers/Kong-CSCW18.pdf",
       "authorIds": ["hkong6", "lee98", "kkarahal"],
-      "awards": []
+      "awards": [],
+      "themes": []
     },
     {
       "title": "The Power of Collective Endorsements: Credibility Factors in Medical Crowdfunding Campaigns",
+      "photoUrl": "",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       "projectId":"medcrowdfunding",
       "year": 2016,
       "conference": "CHI 2016",
       "url": "http://jennifergahee.com/publications/medicalcrowdfunding.chi16.kim.pdf",
       "authorIds": ["jgkim2", "hkong6", "kkarahal", "wfu", "honghwajun"],
-      "awards": []
+      "awards": [],
+      "themes": []
     }
   ]
 }

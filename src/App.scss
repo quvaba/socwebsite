@@ -1,26 +1,37 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700');
+@import url('https://fonts.googleapis.com/css?family=Raleway');
 
 /***************************/
 /*        VARIABLES        */
 /***************************/
 
-$main-blue: #268FFF;
+$main-blue: #003BB0;
 $main-orange: #FFA700;
+$light-blue: #94B8FF;
 $light-orange: #FFAA42;
-$beige: #FFEEC6;
-$light-beige: #FFF5E5;
+$red-orange: #d93d00;
+$beige: #fff5ed;
+
+$body-font: "Raleway";
+$title-font: "Montserrat";
+
+$project-image-width: 250px;
+$project-image-height: 180px;
+
+$light-shadow: 0 2px 3px rgba(0, 0, 0, 0.16), 0 2px 3px rgba(0, 0, 0, 0.23);
+
+
+//****************//
+//    ELEMENTS    //
+//****************//
 
 body {
   background: white;
+  line-height: 1.8em;
 }
 
 a {
-  color: $light-orange;
   text-decoration: none;
-  &:hover {
-    text-decoration: none;
-    color: black;
-  }
 }
 
 li {
@@ -28,19 +39,32 @@ li {
   margin-bottom: 1.5em;
 }
 
+//*****************//
+//     CLASSES     //
+//*****************//
+
+// General styles
+
 .App {
   text-align: left;
-  font-family: "Montserrat";
+  font-family: $body-font;
   color: black;
-  display: grid;
+  margin-top: 2em;
 }
 
-#NavBarBrand .navbar-brand a{
-  font-size: 2em;
+// Main navigation
+
+.NavBrand{
+  font-family: $title-font;
+  font-weight: 700;
+  font-size: 1.5em;
+  margin: .5em;
 }
 
 .NavBar{
+  font-family: $title-font;
   text-align: center;
+  margin-bottom: 5em;
 }
 
 .NavOption {
@@ -49,174 +73,139 @@ li {
   cursor: pointer;
   text-transform: uppercase;
   &:hover {
-    color: $main-orange;
-    animation: nav-hover .5s;
+    color: $main-blue;
+    animation: nav-hover .3s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
   }
 }
+
+// ListPage
 
 .ListPage {
-  /*margin: 3em 3em 10em 10em;
-  max-width: 60vw;*/
   min-height: 100vh;
 }
 
-.ProjectPage {
-  margin: 3em;
+
+// Publication
+
+.Publication {
+
+    display: inline-grid;
+    grid-template-columns: [left-edge] $project-image-width [image] 40px [between] 60% [right-edge];
+    margin-top: 2em;
+
+    .Image {
+      width: $project-image-width;
+      height: $project-image-height;
+      box-shadow: $light-shadow;
+
+      display: inline-grid;
+      grid-column-start: left-edge;
+      grid-column-end: image;
+    }
+
+    .Info {
+      display: inline-grid;
+      grid-column-start: between;
+      grid-column-end: right-edge;
+
+      .Title {
+        font-family: $title-font;
+        font-weight: 600;
+
+        font-size: 1.1em;
+        border-bottom: 1px solid black;
+        color: $main-blue;
+      }
+
+      .Conference {
+        margin-left: 10px;
+        background-color: $main-blue;
+        color: $beige;
+        padding: 3px;
+      }
+
+      .Description {
+        margin-top: 1em;
+      }
+
+      .Author {
+        margin-right: .5em;
+      }
+    }
+
 }
 
-.ProjectTitle {
-  color: $main-blue;
-  font-size: 1.5em;
-  cursor: pointer;
-  &:hover {
-    color: black;
-  }
+// People
+
+.Person {
+    .ImageContainer {
+      width: 130px;
+      height: 130px;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 5px;
+      box-shadow: $light-shadow;
+      /*border-radius: 50%;*/
+    }
+
+    .StudentList {
+      margin-top: 2em;
+      margin-bottom: 1em;
+      font-size: 1.5em;
+      border-bottom: 1px solid black;
+    }
+
+    .Name {
+      font-family: $title-font;
+      font-weight: 600;
+      color: $red-orange;
+      &:hover{
+        color: $beige;
+        background-color: $red-orange;
+      }
+    }
+
+    .Image {
+      width: 100%;
+      max-width: 25em;
+      max-height: 25em;
+    }
+
 }
 
-.Author {
-  margin-right: .5em;
-  padding: .1em;
-  &:hover {
-    background-color: $light-orange;
-    text-decoration: none;
-  }
+// Home
+
+.Home{
+    margin: 5em;
+    margin-top: 1em;
+
+    .Top{
+      height: 400px;
+    }
+
+    .Statement{
+      margin-top: 3em;
+    }
+
+    .FeaturedProjects{
+      margin: 1em;
+      width: 70vw;
+    }
 }
 
-.PersonImage {
-  width: 100%;
-  max-width: 25em;
-  max-height: 25em;
-}
 
-.KarrieIntro {
-  display: inline-block;
-  margin: 2em;
-  vertical-align: text-top;
-}
-
-.InfoSpacing {
-  margin-top: 1.5em;
-}
-
-.Awards {
-  margin-left: 2em;
-  margin-right: 2em;
-}
-
-#KarrieText {
-  font-size: 1.3em;
-  font-weight: bold;
-  cursor: pointer;
-  text-transform: uppercase;
-  &:hover {
-    color: cyan;
-    animation: nav-hover .5s;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-  }
-}
-
-#KarrieImage {
-  width: 40%;
-}
-
-.KarrieIntroContainer {
-  background-color: #e6e8ed;
-  border-radius: 5px;
-  margin-bottom: 2em;
-  color: #4c0322;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-}
-
-.PublicationTitle {
-  font-size: 1.1em;
-  border-bottom: 1px solid black;
-  color: $main-blue;
-}
-
-.Publication:hover::before {
-  content: "➭";
-  font-size: 1.5em;
-  position: absolute;
-  margin-left: -1em;
-}
-
-.StudentList {
-  margin-top: 2em;
-  margin-bottom: 1em;
-  font-size: 1.5em;
-  border-bottom: 1px solid black;
-}
-
-.ProjectPage {
-  min-height: 100vh;
-}
-
-.ProjectPageTitle {
-  font-size: 1.6em;
-}
-
-.ProjectSectionTitle {
-  font-size: 1.2em;
-  color: cyan;
-}
-
-.PeopleImageContainer {
-  width: 100px;
-  height: 100px;
-  position: relative;
-  overflow: hidden;
-  border-radius: 50%;
-}
-
-.HomePage{
-  margin: 5em;
-  margin-top: 1em;
-}
-
-.HomeTop{
-  height: 400px;
-}
-
-.KarrieHomePic{
-  float:left;
-}
-
-.HomeStatement{
-  margin-top: 3em;
-}
-
-.FeaturedProjects{
-  margin: 1em;
-  width: 70vw;
-}
 
 /****************************/
 /*        ANIMATIONS        */
 /****************************/
 @keyframes nav-hover {
   from {
-    text-shadow: 0px 0px $main-blue;
+    text-shadow: 0px 0px $light-blue;
   }
 
   to {
-    text-shadow: -3px -3px $main-blue;
-  }
-}
-
-
-@keyframes project-title-hover {
-  from {
-    text-shadow: 2px 2px 7px cyan;
-  }
-
-  to {
-    text-shadow: -2px -2px 7px magenta;
-  }
-
-  to {
-    color: black;
+    text-shadow: -2px -3px $light-blue;
   }
 }
