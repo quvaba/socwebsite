@@ -1,5 +1,5 @@
 import React from 'react';
-import peopleJson from '../data/people.json';
+import peopleJson from '../data/json/people.json';
 
 // Returns a JSX div of spans of authors that match the netIds given
 // [PARAMS] peopleJson - the json to find matching data from

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import DefaultPic from '../../data/staircase.png'
+import DefaultPic from '../../data/images/staircase.png'
 
 export const Person = (props) => {
 

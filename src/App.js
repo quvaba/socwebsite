@@ -2,12 +2,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Component } from 'react';
 import './App.scss';
 
-import pagesJson from './data/pages.json';
-import coursesJson from './data/courses.json';
-import peopleJson from './data/people.json';
-import karrieJson from './data/karrie.json';
-import projectsJson from './data/projects.json';
-import publicationsJson from './data/publications.json';
+import pagesJson from './data/json/pages.json';
+import coursesJson from './data/json/courses.json';
+import peopleJson from './data/json/people.json';
+import karrieJson from './data/json/karrie.json';
+import projectsJson from './data/json/projects.json';
+import publicationsJson from './data/json/publications.json';
 
 import {getMatchingAuthors} from './utils/utils.js'
 import {getMatchingPublications} from './utils/utils.js'

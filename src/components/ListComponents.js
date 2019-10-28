@@ -106,6 +106,8 @@ export const PublicationList = (props) => {
   return(
     <Grid container justify="center">
       <Grid item xs={10} sm={8} md={8} lg={6}>
+      <div> This will be the topics nav </div>
+      
         {publications.map(
           (publication) => <li key={publications.indexOf(publication)}>
                         <Publication

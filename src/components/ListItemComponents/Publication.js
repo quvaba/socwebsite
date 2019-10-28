@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {getMatchingAuthors} from '../../utils/utils.js'
-import DefaultPic from '../../data/siebel.jpg';
+import DefaultPic from '../../data/images/siebel.jpg';
 
 export const Publication = (props) => {
   let authorList = getMatchingAuthors(props.authors);
@@ -19,8 +19,9 @@ export const Publication = (props) => {
       <span className="Info">
         <a href={props.url} className="Title">{props.title}</a>
         <span className="Conference">{props.conference}</span>
-        <div className="Description">{props.description}</div>
         <div>{authorList}</div>
+        <div className="Description">{props.description}</div>
+        <div> Topics will go here </div>
       </span>
     </div>
   );
@@ -36,5 +37,5 @@ Publication.propTypes = {
   url: PropTypes.string.isRequired,
   authors: PropTypes.array.isRequired,
   awards: PropTypes.array,
-  themes: PropTypes.array
+  topics: PropTypes.array
 }
