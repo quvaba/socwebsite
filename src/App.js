@@ -55,14 +55,11 @@ class App extends Component {
       case "Publications":
         pageContents = <ListPage json={publicationsJson} pageType = "Publications"/>;
         break;
-      case "Projects":
-        pageContents = <ListPage json={projectsJson} pageType = "Projects" onClick={this.goToPage}/>;
-        break;
       case "Courses":
         pageContents = <ListPage json={coursesJson} pageType = "Courses"/>;
         break;
       default:
-        pageContents = <ProjectPage json={projectsJson} id={current} />;
+        pageContents = <HomePage />;
         break;
     }
 
@@ -184,11 +181,6 @@ class ListPage extends Component {
         entryList = <PeopleList json={this.props.json} />;
         break;
 
-      case "Projects":
-        entryList = <ProjectList json={this.props.json}
-                                 onClick={this.handleClick}/>
-        break;
-
       case "Publications":
         entryList = <PublicationList json={this.props.json} />
         break;
@@ -203,50 +195,6 @@ class ListPage extends Component {
 
     return(
       <div className="ListPage">{entryList}</div>
-    );
-  }
-}
-
-
-/* ProjectPage - An individual project's page.
- *
- * [PROPS]
- */
-class ProjectPage extends Component {
-  render(){
-    let allEntries = projectsJson.entries;
-    let id = this.props.id;
-    let targetEntry = allEntries.filter(function(value, index, arr){
-      return (id === value.projectId);
-    });
-
-    targetEntry = targetEntry[0];
-    let authorList = getMatchingAuthors(targetEntry.authorIds);
-    let publicationList = getMatchingPublications(id, publicationsJson);
-
-    let bodyList = targetEntry.body.map(
-      (bodySection) => <li key={targetEntry.body.indexOf(bodySection)}>
-                    <div>
-                      <div className="ProjectSectionTitle">{bodySection.sectionTitle}</div>
-                      <div>{bodySection.sectionContent}</div>
-                    </div>
-                 </li>
-    );
-
-    return(
-      <div className="ProjectPage">
-        <Grid container justify="center">
-          <Grid item xs={12} sm={8} lg={6}>
-            <div className="ProjectPageTitle"> {targetEntry.title} </div>
-            <div> {authorList} </div>
-            <div> {publicationList} </div>
-            <img src={targetEntry.imageUrls[0]} className="ProjectPageImage"/>
-            {bodyList}
-            <img src={targetEntry.imageUrls[1]} className="ProjectPageImage"/>
-            {targetEntry.publications}
-          </Grid>
-        </Grid>
-      </div>
     );
   }
 }
@@ -274,9 +222,9 @@ class HomePage extends Component {
     );
 
     return(
-      <div className="HomePage">
-        <div className="HomeTop">
-          <span className="HomeStatement">
+      <div className="Home">
+        <div className="Top">
+          <span className="Statement">
             <strong>Our goal</strong> is to investigate sociable systems for mediated communication.
             This encompasses a wide range of areas:<br/><br/>
 

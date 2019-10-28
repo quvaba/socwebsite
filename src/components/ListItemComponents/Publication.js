@@ -8,18 +8,20 @@ export const Publication = (props) => {
 
   return(
     <div className="Publication">
-      <a href={props.url} className="PublicationTitle">{props.title}</a>
       <img
         src={
              props.photoUrl.length > 0
              ? props.photoUrl
              : DefaultPic
            }
-        className = "PublicationImage"
+        className = "Image"
       />
-      <span className="PublicationConference">{props.conference}</span>
-      <div className="PublicationDescription">{props.description}</div>
-      <div>{authorList}</div>
+      <span className="Info">
+        <a href={props.url} className="Title">{props.title}</a>
+        <span className="Conference">{props.conference}</span>
+        <div className="Description">{props.description}</div>
+        <div>{authorList}</div>
+      </span>
     </div>
   );
 }
@@ -34,4 +36,5 @@ Publication.propTypes = {
   url: PropTypes.string.isRequired,
   authors: PropTypes.array.isRequired,
   awards: PropTypes.array,
+  themes: PropTypes.array
 }

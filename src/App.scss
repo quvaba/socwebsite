@@ -15,8 +15,8 @@ $beige: #fff5ed;
 $body-font: "Raleway";
 $title-font: "Montserrat";
 
-$project-image-width: 300px;
-$project-image-height: 200px;
+$project-image-width: 250px;
+$project-image-height: 180px;
 
 $light-shadow: 0 2px 3px rgba(0, 0, 0, 0.16), 0 2px 3px rgba(0, 0, 0, 0.23);
 
@@ -26,7 +26,7 @@ $light-shadow: 0 2px 3px rgba(0, 0, 0, 0.16), 0 2px 3px rgba(0, 0, 0, 0.23);
 //****************//
 
 body {
-  background: $beige;
+  background: white;
   line-height: 1.8em;
 }
 
@@ -43,12 +43,16 @@ li {
 //     CLASSES     //
 //*****************//
 
+// General styles
+
 .App {
   text-align: left;
   font-family: $body-font;
   color: black;
   margin-top: 2em;
 }
+
+// Main navigation
 
 .NavBrand{
   font-family: $title-font;
@@ -76,209 +80,122 @@ li {
   }
 }
 
+// ListPage
+
 .ListPage {
-  /*margin: 3em 3em 10em 10em;
-  max-width: 60vw;*/
   min-height: 100vh;
 }
 
-.ProjectPage {
-  margin: 3em;
-}
 
-.ProjectPageImage{
-  max-width: 100%;
-  max-height: 30%;
-  margin: 2.5em 0;
-  background-color: $light-orange;
-  padding: 1em;
-}
-
-.ProjectTitle {
-  color: $main-blue;
-  font-size: 1.2em;
-
-  font-family: $title-font;
-  font-weight: 600;
-
-  cursor: pointer;
-  &:hover {
-    color: $red-orange;
-    text-decoration: underline;
-    text-decoration-color: $light-orange;
-    text-decoration-style: wavy;
-  }
-}
-
-.Project {
-  display: inline-grid;
-  grid-template-columns: [left-edge] $project-image-width [image] 40px [between] 60% [right-edge];
-}
-
-.ProjectImage {
-  width: $project-image-width;
-  height: $project-image-height;
-  box-shadow: $light-shadow;
-
-  display: inline-grid;
-  grid-column-start: left-edge;
-  grid-column-end: image;
-}
-
-.ProjectInfo {
-  display: inline-grid;
-  grid-column-start: between;
-  grid-column-end: right-edge;
-}
-
-.Author {
-  margin-right: .5em;
-  padding: .1em;
-  &:hover {
-    background-color: $light-orange;
-    text-decoration: none;
-  }
-}
-
-.KarrieIntro {
-  display: inline-block;
-  margin: 2em;
-  vertical-align: text-top;
-}
-
-.InfoSpacing {
-  margin-top: 1.5em;
-}
-
-.Awards {
-  margin-left: 2em;
-  margin-right: 2em;
-}
-
-#KarrieText {
-  font-size: 1.3em;
-  font-family: $title-font;
-  font-weight: bold;
-  text-transform: uppercase;
-
-  &:hover {
-    color: $main-blue;
-    animation: nav-hover .5s;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-  }
-}
-
-#KarrieImage {
-  width: 40%;
-}
-
-.KarrieIntroContainer {
-  margin-bottom: 2em;
-  color: $main-blue;
-  border: 3px solid $main-blue;
-}
+// Publication
 
 .Publication {
-  
+
+    display: inline-grid;
+    grid-template-columns: [left-edge] $project-image-width [image] 40px [between] 60% [right-edge];
+    margin-top: 2em;
+
+    .Image {
+      width: $project-image-width;
+      height: $project-image-height;
+      box-shadow: $light-shadow;
+
+      display: inline-grid;
+      grid-column-start: left-edge;
+      grid-column-end: image;
+    }
+
+    .Info {
+      display: inline-grid;
+      grid-column-start: between;
+      grid-column-end: right-edge;
+
+      .Title {
+        font-family: $title-font;
+        font-weight: 600;
+
+        font-size: 1.1em;
+        border-bottom: 1px solid black;
+        color: $main-blue;
+      }
+
+      .Conference {
+        margin-left: 10px;
+        background-color: $main-blue;
+        color: $beige;
+        padding: 3px;
+      }
+
+      .Description {
+        margin-top: 1em;
+      }
+
+      .Author {
+        margin-right: .5em;
+      }
+    }
+
 }
 
-.PublicationTitle {
-  font-family: $title-font;
-  font-weight: 600;
+// People
 
-  font-size: 1.1em;
-  border-bottom: 1px solid black;
-  color: $main-blue;
+.Person {
+    .ImageContainer {
+      width: 130px;
+      height: 130px;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 5px;
+      box-shadow: $light-shadow;
+      /*border-radius: 50%;*/
+    }
+
+    .StudentList {
+      margin-top: 2em;
+      margin-bottom: 1em;
+      font-size: 1.5em;
+      border-bottom: 1px solid black;
+    }
+
+    .Name {
+      font-family: $title-font;
+      font-weight: 600;
+      color: $red-orange;
+      &:hover{
+        color: $beige;
+        background-color: $red-orange;
+      }
+    }
+
+    .Image {
+      width: 100%;
+      max-width: 25em;
+      max-height: 25em;
+    }
 
 }
 
-.PublicationConference{
-  margin-left: 10px;
-  background-color: $main-blue;
-  color: $beige;
-  padding: 3px;
+// Home
+
+.Home{
+    margin: 5em;
+    margin-top: 1em;
+
+    .Top{
+      height: 400px;
+    }
+
+    .Statement{
+      margin-top: 3em;
+    }
+
+    .FeaturedProjects{
+      margin: 1em;
+      width: 70vw;
+    }
 }
 
-.PublicationDescription{
-  margin-top: 1em;
-}
 
-/*.Publication:hover::before {
-  content: "➭";
-  font-size: 1.5em;
-  position: absolute;
-  margin-left: -1em;
-}*/
-
-.StudentList {
-  margin-top: 2em;
-  margin-bottom: 1em;
-  font-size: 1.5em;
-  border-bottom: 1px solid black;
-}
-
-.PersonName {
-  font-family: $title-font;
-  font-weight: 600;
-  color: $red-orange;
-  &:hover{
-    color: $beige;
-    background-color: $red-orange;
-  }
-}
-
-.PersonImage {
-  width: 100%;
-  max-width: 25em;
-  max-height: 25em;
-}
-
-.ProjectPage {
-  min-height: 100vh;
-}
-
-.ProjectPageTitle {
-  font-family: $title-font;
-  font-weight: 600;
-  font-size: 1.6em;
-}
-
-.ProjectSectionTitle {
-  font-family: $title-font;
-  font-size: 1.2em;
-  font-weight: 600;
-  color: $main-blue;
-  margin-bottom: 1em;
-}
-
-.PeopleImageContainer {
-  width: 130px;
-  height: 130px;
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 5px;
-  box-shadow: $light-shadow;
-  /*border-radius: 50%;*/
-}
-
-.HomePage{
-  margin: 5em;
-  margin-top: 1em;
-}
-
-.HomeTop{
-  height: 400px;
-}
-
-.HomeStatement{
-  margin-top: 3em;
-}
-
-.FeaturedProjects{
-  margin: 1em;
-  width: 70vw;
-}
 
 /****************************/
 /*        ANIMATIONS        */

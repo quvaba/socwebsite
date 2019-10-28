@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 import PropTypes from 'prop-types';
 import DefaultPic from '../../data/siebel.jpg';
 
@@ -40,3 +40,4 @@ Project.propTypes = {
   onClick: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
 };
+*/

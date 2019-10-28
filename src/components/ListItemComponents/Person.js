@@ -6,16 +6,16 @@ export const Person = (props) => {
 
     return(
       <span className="Person">
-        <div className="PeopleImageContainer">
+        <div className="ImageContainer">
           {
             props.photoUrl.length > 0
-            ? (<img className="PersonImage" src={props.photoUrl} />)
-            : (<img className="PersonImage" src={DefaultPic} />)
+            ? (<img className="Image" src={props.photoUrl} />)
+            : (<img className="Image" src={DefaultPic} />)
           }
         </div>
         <div>
           {props.pageUrl.length > 0 ?
-          (<a href={props.pageUrl} className="PersonName">{props.name} </a>):
+          (<a href={props.pageUrl} className="Name">{props.name} </a>):
           (<span>{props.name}</span>)
         }
         </div>

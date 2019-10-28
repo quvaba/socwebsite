@@ -9,7 +9,8 @@
       "conference": "CHI 2018",
       "url": "http://social.cs.uiuc.edu/papers/Kim-CHI18.pdf",
       "authorIds": ["jgkim2", "hkong6", "kkarahal"],
-      "awards": []
+      "awards": [],
+      "themes": []
     },
     {
       "title": "Effects of Socially Stigmatized Crowdfunding Campaigns in Shaping Opinions",
@@ -20,7 +21,8 @@
       "conference": "CHI 2018",
       "url": "http://social.cs.uiuc.edu/papers/StigmatizedCrowdfunding.pdf",
       "authorIds": ["sdey4", "kkarahal", "wfu"],
-      "awards": ["Honorable Mention"]
+      "awards": ["Honorable Mention"],
+      "themes": []
     },
     {
       "title": "A Comparative Study of Visualizations with Different Granularities of Behavior for Communicating about Autism",
@@ -31,7 +33,8 @@
       "conference": "CSCW 2018",
       "url": "http://social.cs.uiuc.edu/papers/Kong-CSCW18.pdf",
       "authorIds": ["hkong6", "lee98", "kkarahal"],
-      "awards": []
+      "awards": [],
+      "themes": []
     },
     {
       "title": "The Power of Collective Endorsements: Credibility Factors in Medical Crowdfunding Campaigns",
@@ -42,7 +45,8 @@
       "conference": "CHI 2016",
       "url": "http://jennifergahee.com/publications/medicalcrowdfunding.chi16.kim.pdf",
       "authorIds": ["jgkim2", "hkong6", "kkarahal", "wfu", "honghwajun"],
-      "awards": []
+      "awards": [],
+      "themes": []
     }
   ]
 }
