@@ -139,31 +139,29 @@ li {
 
 // People
 
+.StudentList {
+  margin-top: 2em;
+  margin-bottom: 1em;
+  font-size: 1.5em;
+  border-bottom: 1px solid black;
+}
 .Person {
     .ImageContainer {
-      width: 130px;
-      height: 130px;
+      width: 120px;
+      height: 120px;
       position: relative;
       overflow: hidden;
       margin-bottom: 5px;
       box-shadow: $light-shadow;
-      /*border-radius: 50%;*/
-    }
-
-    .StudentList {
-      margin-top: 2em;
-      margin-bottom: 1em;
-      font-size: 1.5em;
-      border-bottom: 1px solid black;
+      border-radius: 50%;
+      margin-right: 20px;
     }
 
     .Name {
       font-family: $title-font;
-      font-weight: 600;
       color: $red-orange;
       &:hover{
-        color: $beige;
-        background-color: $red-orange;
+        font-weight: bold;
       }
     }
 
@@ -173,6 +171,26 @@ li {
       max-height: 25em;
     }
 
+    .DegreeYear {
+      line-height: 1.2em;
+      display: inline-block;
+      padding: 0 5px;
+      font-size: 0.8em;
+      text-align: center;
+      color: $beige;
+      background-color: $red-orange;
+    }
+
+    .CurrentRole {
+      font-size: 0.9em;
+      font-weight: 600;
+      font-style: italic;
+    }
+
+    .BriefIntro {
+      font-size: 0.9em;
+      padding-bottom: 30px;
+    }
 }
 
 // Home

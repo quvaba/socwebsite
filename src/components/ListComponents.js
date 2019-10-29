@@ -27,11 +27,11 @@ export const PeopleList = (props) => {
 
   return (
     <Grid container justify="center">
-      <Grid item xs={10} sm={8} lg={6}>
+      <Grid item xs={10} sm={8}>
        <div className="StudentList">Current Students</div>
         <Grid container className="People" justify="flex-start" spacing={16}>
           {currentPeople.map(person => (
-            <Grid key={people.indexOf(person)} item xs={12} sm={6} md={3}>
+            <Grid key={people.indexOf(person)} item xs={12} sm={6}>
               <Person
                 name={person.name}
                 pageUrl={person.pageUrl}
@@ -45,7 +45,7 @@ export const PeopleList = (props) => {
         <div className="StudentList">Alumni</div>
         <Grid container className="People" justify="flex-start" spacing={16}>
           {alumniPeople.map(person => (
-            <Grid key={people.indexOf(person)} item xs={12} sm={6} md={3}>
+            <Grid key={people.indexOf(person)} item xs={12} sm={6}>
               <Person
                 name={person.name}
                 pageUrl={person.pageUrl}
