@@ -108,7 +108,12 @@ export const PublicationList = (props) => {
     <Grid container justify="center">
       <Grid item xs={10} sm={8} md={8} lg={6}>
       <div>
-        This will be the topics nav
+        {
+          topics.map(
+            (topic) =>
+                <span key={topics.indexOf(topic)}>{topic}</span>
+          )
+        }
       </div>
 
         {publications.map(
@@ -122,6 +127,7 @@ export const PublicationList = (props) => {
                           url={publication.url}
                           authors={publication.authorIds}
                           awards={publication.awards}
+                          topics={publication.topics}
                         />
                      </li>
         )}

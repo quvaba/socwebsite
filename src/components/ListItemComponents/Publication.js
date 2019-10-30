@@ -21,7 +21,7 @@ export const Publication = (props) => {
         <span className="Conference">{props.conference}</span>
         <div>{authorList}</div>
         <div className="Description">{props.description}</div>
-        <div> Topics will go here </div>
+        <div> {props.topics} </div>
       </span>
     </div>
   );
