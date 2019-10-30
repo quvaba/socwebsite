@@ -101,13 +101,16 @@ ProjectList.propTypes = {
 
 export const PublicationList = (props) => {
   let publications = props.json.entries;
+  let topics = props.json.topics;
   publications.sort((a, b) => (a.year < b.year) ? 1 : -1);
 
   return(
     <Grid container justify="center">
       <Grid item xs={10} sm={8} md={8} lg={6}>
-      <div> This will be the topics nav </div>
-      
+      <div>
+        This will be the topics nav
+      </div>
+
         {publications.map(
           (publication) => <li key={publications.indexOf(publication)}>
                         <Publication
