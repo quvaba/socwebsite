@@ -5,6 +5,7 @@ import { Person } from './ListItemComponents/Person';
 import { Project } from './ListItemComponents/Project';
 import { Publication } from './ListItemComponents/Publication';
 import { Course } from './ListItemComponents/Course';
+import { Topic } from './ListItemComponents/Topic'
 
 import {getMatchingPublications} from '../utils/utils.js'
 import {getTopPublications} from '../utils/utils.js'
@@ -100,24 +101,17 @@ ProjectList.propTypes = {
 
 
 export const PublicationList = (props) => {
-  let publications = props.json.entries;
-  let topics = props.json.topics;
-  publications.sort((a, b) => (a.year < b.year) ? 1 : -1);
+
+  const handleTopicClick = (topicName) => {
+    props.handleTopicClick(topicName);
+  }
 
   return(
     <Grid container justify="center">
       <Grid item xs={10} sm={8} md={8} lg={6}>
-      <div>
-        {
-          topics.map(
-            (topic) =>
-                <span key={topics.indexOf(topic)}>{topic}</span>
-          )
-        }
-      </div>
 
-        {publications.map(
-          (publication) => <li key={publications.indexOf(publication)}>
+        {props.publications.map(
+          (publication) => <li key={props.publications.indexOf(publication)}>
                         <Publication
                           title={publication.title}
                           photoUrl={publication.photoUrl}
@@ -128,16 +122,20 @@ export const PublicationList = (props) => {
                           authors={publication.authorIds}
                           awards={publication.awards}
                           topics={publication.topics}
+                          handleTopicClick={handleTopicClick}
                         />
                      </li>
         )}
       </Grid>
     </Grid>
   );
+
 }
 
 PublicationList.propTypes = {
-  json: PropTypes.object.isRequired
+  publications: PropTypes.array.isRequired,
+  displayTopics: PropTypes.array,
+  handleTopicClick: PropTypes.func.isRequired
 };
 
 

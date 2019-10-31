@@ -1,11 +1,11 @@
 import React from 'react';
 import peopleJson from '../data/json/people.json';
+import publicationsJson from '../data/json/publications.json';
 
 // Returns a JSX div of spans of authors that match the netIds given
 // [PARAMS] peopleJson - the json to find matching data from
 //          netIds - the array of netIds to be matched
 export function getMatchingAuthors(netIds){
-  console.log(netIds);
   let allAuthors = peopleJson.entries;
   let entryAuthors = allAuthors.filter(function(value, index, arr){
     return (netIds.includes(value.netId));
@@ -71,4 +71,23 @@ export function getMatchingPublications(projectId, publicationsJson){
   return(
     <div> {pubList} </div>
   );
+}
+
+
+// topics: array of strings
+export function getMatchingPubsByTopics(topics){
+  let allPublications = publicationsJson.entries;
+  let matchingPubs = allPublications.filter(
+    function(publication){
+      let hasMatch = 0;
+      topics.forEach(function(topic){
+        hasMatch += publication.topics.includes(topic);
+      });
+      return (hasMatch > 0);
+    }
+  );
+
+  matchingPubs.sort((a, b) => (a.year < b.year) ? 1 : -1);
+
+  return matchingPubs;
 }

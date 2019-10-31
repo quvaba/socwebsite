@@ -137,6 +137,35 @@ li {
 
 }
 
+// Topic
+
+.Topic {
+  color: $red-orange;
+  margin-right: 5px;
+
+  &.Interactive {
+    border: 1px solid $red-orange;
+    border-radius: 15px;
+    padding: 5px;
+
+    &:hover{
+      background-color: fade-out($red-orange, .8);
+      cursor: pointer;
+    }
+
+    &.Selected {
+      background-color: $red-orange;
+      color: white;
+    }
+  }
+
+  &.Secondary {
+    &:before{
+      content: "#";
+    }
+  }
+}
+
 // People
 
 .Person {
@@ -194,7 +223,6 @@ li {
       width: 70vw;
     }
 }
-
 
 
 /****************************/

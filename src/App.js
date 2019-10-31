@@ -16,6 +16,7 @@ import {getTopPublications} from './utils/utils.js'
 import Grid from '@material-ui/core/Grid';
 
 import { PeopleList, PublicationList, CourseList, ProjectList } from './components/ListComponents';
+import { ListPage, PublicationListContainer } from './containers/ListContainers';
 
 /**
  * App - contains everything. Wraps a NavBar and a page contents.
@@ -158,47 +159,6 @@ class NavOption extends Component {
 
 *****************************************************************************************************************/
 
-/* ListPage - includes People, Projects, Publications, Karrie, and Courses
- *
- * [PROPS] json - the json to be read from
- *         pageType - the type of page to render
- */
-class ListPage extends Component {
-  constructor(props){
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick(projectTitle){
-    this.props.onClick(projectTitle);
-  }
-
-  render(){
-    let entryList;
-
-    switch (this.props.pageType) {
-      case "People":
-        entryList = <PeopleList json={this.props.json} />;
-        break;
-
-      case "Publications":
-        entryList = <PublicationList json={this.props.json} />
-        break;
-
-      case "Courses":
-        entryList = <CourseList json={this.props.json} />
-        break;
-
-      default:
-
-    }
-
-    return(
-      <div className="ListPage">{entryList}</div>
-    );
-  }
-}
-
 
 /* HomePage - The home page of the social spaces website.
  *
@@ -214,7 +174,7 @@ class HomePage extends Component {
     );
 
     let projList = featuredProjects.map(
-      (project) => <li>
+      (project) => <li key={featuredProjects.indexOf(project)}>
           <div>{project.title}</div>
           <div>{project.description}</div>
           <div> {getTopPublications(2, project.projectId, publicationsJson)} </div>
