@@ -53,7 +53,7 @@ class App extends Component {
       case "People":
         pageContents = <ListPage json={peopleJson} pageType = "People"/>;
         break;
-      case "Publications":
+      case "Research":
         pageContents = <ListPage json={publicationsJson} pageType = "Publications"/>;
         break;
       case "Courses":
@@ -115,9 +115,6 @@ class NavBar extends Component {
 
     return(
       <div className="NavBar">
-          <div className="NavBrand">
-            <a href="/"> [ SOCIAL SPACES ] </a>
-          </div>
           {pages}
       </div>
     );
@@ -198,8 +195,8 @@ class HomePage extends Component {
 
         <hr />
 
-        <div className="FeaturedProjects">
-          <h2>Featured Projects</h2>
+        <div className="WhatsNew">
+          <h2>What's New</h2>
           {projList}
         </div>
 

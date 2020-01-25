@@ -27,7 +27,7 @@ export const PeopleList = (props) => {
   });
 
   return (
-    <Grid container justify="center">
+    <Grid container justify="center" className="PeopleList">
       <Grid item xs={10} sm={8} lg={6}>
        <div className="StudentList">Current Students</div>
         <Grid container className="People" justify="flex-start" spacing={16}>
@@ -107,9 +107,7 @@ export const PublicationList = (props) => {
   }
 
   return(
-    <Grid container justify="center">
-      <Grid item xs={10} sm={8} md={8} lg={6}>
-
+      <div className="PublicationList">
         {props.publications.map(
           (publication) => <li key={props.publications.indexOf(publication)}>
                         <Publication
@@ -126,8 +124,7 @@ export const PublicationList = (props) => {
                         />
                      </li>
         )}
-      </Grid>
-    </Grid>
+      </div>
   );
 
 }

@@ -22,9 +22,11 @@ export const Publication = (props) => {
         className = "Image"
       />
       <span className="Info">
-        <a href={props.url} className="Title">{props.title}</a>
-        <span className="Conference">{props.conference}</span>
-        <div>{authorList}</div>
+        <div>
+          <span><a href={props.url} className="Title">{props.title}</a></span>
+          <span className="Conference">{props.conference}</span>
+        </div>
+        <div className="AuthorList">{authorList}</div>
         <div className="Description">{props.description}</div>
         <div>
           {props.topics.map(
