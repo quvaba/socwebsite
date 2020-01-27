@@ -87,7 +87,7 @@ export const ProjectList = (props) => {
                         id={project.projectId}
                       />
                    </li>
-      )}
+      )} 
        </Grid>
     </Grid>
   );
@@ -102,26 +102,23 @@ ProjectList.propTypes = {
 export const PublicationList = (props) => {
   let publications = props.json.entries;
   publications.sort((a, b) => (a.year < b.year) ? 1 : -1);
-
   return(
-    <Grid container justify="center">
-      <Grid item xs={10} sm={8} md={8} lg={6}>
-        {publications.map(
-          (publication) => <li key={publications.indexOf(publication)}>
-                        <Publication
-                          title={publication.title}
-                          photoUrl={publication.photoUrl}
-                          description={publication.description}
-                          year={publication.year}
-                          conference={publication.conference}
-                          url={publication.url}
-                          authors={publication.authorIds}
-                          awards={publication.awards}
-                        />
-                     </li>
-        )}
-      </Grid>
-    </Grid>
+	  <Grid item>
+            {publications.map(
+              (publication) => <li key={publications.indexOf(publication)}>
+                            <Publication
+                             title={publication.title}
+                             photoUrl={publication.photoUrl}
+                             description={publication.description}
+                             year={publication.year}
+                             conference={publication.conference}
+                             url={publication.url}
+                             authors={publication.authorIds}
+                             awards={publication.awards}
+                            />
+                         </li>
+          )}
+	  </Grid>
   );
 }
 

@@ -5,7 +5,6 @@ import peopleJson from '../data/people.json';
 // [PARAMS] peopleJson - the json to find matching data from
 //          netIds - the array of netIds to be matched
 export function getMatchingAuthors(netIds){
-  console.log(netIds);
   let allAuthors = peopleJson.entries;
   let entryAuthors = allAuthors.filter(function(value, index, arr){
     return (netIds.includes(value.netId));
@@ -14,7 +13,7 @@ export function getMatchingAuthors(netIds){
   let authorList = entryAuthors.map(
     (author) => <span className="Author" key={entryAuthors.indexOf(author)}>
                   {author.pageUrl.length > 0 ?
-                    (<a href={author.pageUrl}>{author.name}</a>) :
+                    (<a href={author.pageUrl} class="authorlink">{author.name}</a>) :
                     (<span>{author.name}</span>)
                   }
 
@@ -25,6 +24,25 @@ export function getMatchingAuthors(netIds){
     <div> {authorList} </div>
   );
 }
+
+
+// [PARAMS] topic_list - list of topic we want to return publications from
+//          publicationsJson - the json to find matching pubs from
+export function getMatchingPublicationsTopic(topic_list, publicationsJson) {
+   let allPublications = publicationsJson.entries;
+
+   function containsTopicFrom(element) {
+       for (var i=0; i < this.length; i++) {
+         if (this[i] == 'All' || element.themes.includes(this[i])) {
+           return true;
+	 }
+       }
+       return false;
+     }
+   let matchingPubs = allPublications.filter(containsTopicFrom, topic_list);
+   return matchingPubs;
+}
+
 
 //
 // [PARAMS] num - number of most recent publications to return

@@ -34,6 +34,18 @@ a {
   text-decoration: none;
 }
 
+a.authorlink:hover {
+  font-weight: bold;  
+}
+
+a.authorlink:link {
+  color: $red-orange;
+}
+a.authorlink:visited {
+  color: $red-orange;
+}
+
+
 li {
   list-style-type: none;
   margin-bottom: 1.5em;
@@ -80,19 +92,83 @@ li {
   }
 }
 
+
+
+
 // ListPage
 
 .ListPage {
   min-height: 100vh;
 }
 
+#PubList {
+  width:60%;
+} 
 
 // Publication
 
-.Publication {
+.check-container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select:none;
+}
 
+.check-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+.check-container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+.check-container input:checked ~ .checkmark {
+    background-color: $red-orange;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.check-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.check-container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.Publication {
     display: inline-grid;
     grid-template-columns: [left-edge] $project-image-width [image] 40px [between] 60% [right-edge];
+   
     margin-top: 2em;
 
     .Image {
@@ -100,42 +176,46 @@ li {
       height: $project-image-height;
       box-shadow: $light-shadow;
 
-      display: inline-grid;
       grid-column-start: left-edge;
       grid-column-end: image;
     }
 
     .Info {
-      display: inline-grid;
       grid-column-start: between;
       grid-column-end: right-edge;
-
+      display: inline-grid;
+      grid-template-columns: [left-part] 20% [center-part] 80% [right-part];
       .Title {
-        font-family: $title-font;
-        font-weight: 600;
-
-        font-size: 1.1em;
-        border-bottom: 1px solid black;
-        color: $main-blue;
-      }
+	 grid-column-start: span 2;
+         font-family: $title-font;
+         font-weight: 600;
+         font-size: 1.1em;
+         color: $main-blue;
+      } 
 
       .Conference {
-        margin-left: 10px;
-        background-color: $main-blue;
+	border-radius: 7px;
+        background-color: $red-orange;
         color: $beige;
-        padding: 3px;
+        padding: 0px 3px 0px 3px;
+	justify-self: start;
+	align-self: center;
+      }
+      .Author {
+	grid-column-start: center-part;
+        font-family: $title-font;
+        margin-right: .5em;
       }
 
       .Description {
+	grid-column-start: span 2;
         margin-top: 1em;
       }
 
-      .Author {
-        margin-right: .5em;
-      }
-    }
-
+  }
 }
+
+
 
 // People
 
@@ -175,6 +255,7 @@ li {
       line-height: 1.2em;
       display: inline-block;
       padding: 0 5px;
+      border-radius: 5px;
       font-size: 0.8em;
       text-align: center;
       color: $beige;

@@ -9,6 +9,7 @@ import karrieJson from './data/karrie.json';
 import projectsJson from './data/projects.json';
 import publicationsJson from './data/publications.json';
 
+import {getMatchingPublicationsTopic} from './utils/utils.js'
 import {getMatchingAuthors} from './utils/utils.js'
 import {getMatchingPublications} from './utils/utils.js'
 import {getTopPublications} from './utils/utils.js'
@@ -27,9 +28,11 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      currentPage: "Home"
+      currentPage: "Home",
+      topicList: ['All']
     };
     this.goToPage = this.goToPage.bind(this);
+    this.topicCheck = this.topicCheck.bind(this);
   }
 
   goToPage(pageName){
@@ -37,6 +40,41 @@ class App extends Component {
       currentPage: pageName
     });
   }
+
+  topicCheck(topic){
+    console.log("checking for" + topic);
+    if (this.state.topicList.indexOf(topic) >=0) {
+      console.log("gonna remove" + topic);
+      this.removeTopic(topic);
+    } else{
+      console.log("gonna add" + topic);
+      this.addTopic(topic);
+    }
+  }
+
+  addTopic(topic){
+    let newTopicList = this.state.topicList.slice();
+    newTopicList.push(topic);
+    this.setState({
+      topicList: newTopicList
+    });
+  }
+
+  removeTopic(topic){
+    console.log(this.state.topicList);
+    let newTopicList = this.state.topicList.slice();
+    for (let i=0; i < this.state.topicList.length; i++) {
+      if (this.state.topicList[i] == topic) {
+	console.log("found " + topic);
+        newTopicList.splice(i, 1);   
+	console.log(newTopicList);
+      }
+    }
+    this.setState({
+      topicList: newTopicList
+    });
+  }
+
 
   render(){
     let pageContents;
@@ -53,8 +91,24 @@ class App extends Component {
         pageContents = <ListPage json={peopleJson} pageType = "People"/>;
         break;
       case "Publications":
-        pageContents = <ListPage json={publicationsJson} pageType = "Publications"/>;
-        break;
+        let newJson = getMatchingPublicationsTopic(this.state.topicList, publicationsJson)
+        let newJsonObj = {
+          entries: newJson 
+	}
+        console.log(typeof(publicationsJson));
+        console.log(typeof(newJson));
+        pageContents = <ListPage json={newJsonObj} pageType = "Publications"/>;
+        return(
+          <div className="App">
+            <NavBar json={pagesJson} loadPage={this.goToPage}/>
+	    <Grid container justify="center">
+              <Grid item xs={3} sm={2} md={2} lg={1}>
+                <PubFilter toggleTopic={this.topicCheck}/>
+	      </Grid>
+                {pageContents}
+	    </Grid>
+	  </div>
+        );
       case "Courses":
         pageContents = <ListPage json={coursesJson} pageType = "Courses"/>;
         break;
@@ -70,7 +124,6 @@ class App extends Component {
       </div>
     );
   }
-
 }
 
 
@@ -148,7 +201,57 @@ class NavOption extends Component {
       </span>
     );
   }
+}
 
+class PubFilter extends Component {
+  constructor(props) {
+    super(props);
+    this.handleToggle = this.handleToggle.bind(this);
+  }
+
+  handleToggle(topic){
+    this.props.toggleTopic(topic);
+  }
+
+
+  render() {
+    return(
+    	  <div id="topicfilter" vertical-align="middle">
+	    <label id="All" class="check-container">All
+	      <input type="checkbox" onChange={() => this.handleToggle('All')} defaultChecked/>
+	      <span class="checkmark"></span>
+	    </label>
+	    <label id="TopicOne" class="check-container">Topic One
+	      <input type="checkbox" onChange={() => this.handleToggle('TopicOne')}/>
+	      <span class="checkmark"></span>
+	    </label>
+	    <label id="TopicTwo" class="check-container">Topic Two
+	      <input type="checkbox" onChange={() => this.handleToggle('TopicTwo')}/>
+	      <span class="checkmark"></span>
+	    </label>
+	    <label id="TopicThree" class="check-container">Topic Three
+	      <input type="checkbox" onChange={() => this.handleToggle('TopicThree')}/>
+	      <span class="checkmark"></span>
+	    </label>
+	    <label id="TopicFour" class="check-container">Topic Four
+	      <input type="checkbox" onChange={() => this.handleToggle('TopicFour')}/>
+	      <span class="checkmark"></span>
+	    </label>
+	    <label id="TopicFive" class="check-container">Topic Five
+	      <input type="checkbox" onChange={() => this.handleToggle('TopicFive')}/>
+	      <span class="checkmark"></span>
+	    </label>
+	    <label id="TopicSix" class="check-container">Topic Six
+	      <input type="checkbox" onChange={() => this.handleToggle('TopicSix')}/>
+	      <span class="checkmark"></span>
+	    </label>
+	    <label id="TopicSeven" class="check-container">Topic Seven
+	      <input type="checkbox" onChange={() => this.handleToggle('TopicSeven')}/>
+	      <span class="checkmark"></span>
+	    </label>
+	  </div>
+    );
+  }
 }
 
 
@@ -163,6 +266,8 @@ class NavOption extends Component {
  * [PROPS] json - the json to be read from
  *         pageType - the type of page to render
  */
+
+
 class ListPage extends Component {
   constructor(props){
     super(props);
@@ -179,23 +284,29 @@ class ListPage extends Component {
     switch (this.props.pageType) {
       case "People":
         entryList = <PeopleList json={this.props.json} />;
+        return(
+          <div className="ListPage">{entryList}</div>
+        );
         break;
 
       case "Publications":
         entryList = <PublicationList json={this.props.json} />
+        return(
+            <div id="PubList" className="ListPage">{entryList}</div>
+        );
         break;
 
       case "Courses":
         entryList = <CourseList json={this.props.json} />
+        return(
+          <div className="ListPage">{entryList}</div>
+        );
         break;
 
       default:
 
     }
 
-    return(
-      <div className="ListPage">{entryList}</div>
-    );
   }
 }
 
@@ -217,7 +328,7 @@ class HomePage extends Component {
       (project) => <li>
           <div>{project.title}</div>
           <div>{project.description}</div>
-          <div> {getTopPublications(2, project.projectId, publicationsJson)} </div>
+          <div>{getTopPublications(2, project.projectId, publicationsJson)} </div>
       </li>
     );
 
