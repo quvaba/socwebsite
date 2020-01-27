@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { PeopleList, PublicationList, CourseList, ProjectList } from '../components/ListComponents';
-import { getMatchingPubsByTopics } from '../utils/utils.js';
+import { getMatchingPubsByTopic } from '../utils/utils.js';
 import { Topic } from '../components/ListItemComponents/Topic.js';
 
 export class ListPage extends Component {
@@ -52,59 +52,50 @@ export class PublicationListContainer extends Component {
   constructor(props){
     super(props);
     this.state = {
-      displayTopics: [...props.json.topics]
+      displayTopic: props.json.topics[0]
     }; // display all topics by default
+    console.log(this.state.displayTopic); // yep, correct
     this.handleTopicClick = this.handleTopicClick.bind(this);
   }
 
+  handleTopicClick(topicName, topicsMap){
+    // get topics map and assign selected/not selected to className
+  }
+
   handleTopicClick(topicName){
-    // change this later to make each topic act as a toggle
-    // i.e. if topic is currently in array, remove it. if not, add it.
-    // maybe move topic nav to this container so it's easier to style.
+    // CHANGE OF PLANS - WE ARE MAKING IT INTO RADIO BUTTONS
+    // REFACTOR displayTopics into displayTopic - we will only display
+    // one topic at a time.
 
-    // search for topicName in displayTopics. if not found, add it.
-    // if found, remove it.
-    let topicidx = -1;
-
-    this.state.displayTopics.forEach(function(topic, index){
-      if (topic === topicName){
-        topicidx = index;
-      }
+    this.setState({
+      displayTopic: topicName
     });
-
-    if (topicidx === -1){
-      //let joined = this.state.displayTopics.concat(topicName);
-      this.setState({
-        displayTopics: [...this.state.displayTopics, topicName]
-      });
-    } else {
-      let removed = [...this.state.displayTopics];
-      removed.splice(topicidx, 1);
-      this.setState({
-        displayTopics: removed
-      });
-    }
   }
 
   render(){
 
-    let publications = getMatchingPubsByTopics(this.state.displayTopics);
+    let publications = getMatchingPubsByTopic(this.state.displayTopic);
     let topics = this.props.json.topics;
+    let topicsMap = topics.map(
+      (topic) => <Topic
+                    className="Interactive"
+                    name={topic}
+                    onClick={this.handleTopicClick}
+                  />
+    );
 
     return (
 
       <div>
           <div className="TopicNav">
             {
-              topics.map(
-                (topic) => <Topic className="Interactive" name={topic} onClick={this.handleTopicClick}/>
-              )
+              topicsMap
             }
           </div>
 
           <PublicationList
               publications={publications}
-              displayTopics={this.state.displayTopics}
+              displayTopic={this.state.displayTopic}
               handleTopicClick={this.handleTopicClick}
           />
       </div>

@@ -6,17 +6,12 @@ export class Topic extends Component {
     super(props);
     this.handleClick = this.handleClick.bind(this);
     this.state = {
-      selected: "Selected"
+      selected: ""
     }
   }
 
   handleClick(e){
     this.props.onClick(this.props.name);
-    if (this.state.selected){
-      this.setState({ selected: "" });
-    } else {
-      this.setState({ selected: "Selected" });
-    }
   }
 
   render(){

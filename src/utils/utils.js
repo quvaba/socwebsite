@@ -75,6 +75,8 @@ export function getMatchingPublications(projectId, publicationsJson){
 
 
 // topics: array of strings
+// OUTDATED - this function returns the UNION of publications
+//            that contain one or more of the topics
 export function getMatchingPubsByTopics(topics){
   let allPublications = publicationsJson.entries;
   let matchingPubs = allPublications.filter(
@@ -84,6 +86,32 @@ export function getMatchingPubsByTopics(topics){
         hasMatch += publication.topics.includes(topic);
       });
       return (hasMatch > 0);
+    }
+  );
+
+  matchingPubs.sort((a, b) => (a.year < b.year) ? 1 : -1);
+
+  return matchingPubs;
+}
+
+// topic: a string representing a topic, or "ALL" for all topics
+// CURRENT - returns all publications that have this topic tagged,
+//           or every publication in the json if topic === "ALL"
+export function getMatchingPubsByTopic(topic){
+  let allPublications = publicationsJson.entries;
+
+  console.log(topic);
+
+  if (topic === "ALL"){
+    return allPublications;
+  }
+
+  let matchingPubs = allPublications.filter(
+    function(publication){
+      if (publication.topics.includes(topic)){
+        return true;
+      }
+      return false;
     }
   );
 
