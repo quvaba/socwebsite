@@ -58,27 +58,24 @@ export class PublicationListContainer extends Component {
     this.handleTopicClick = this.handleTopicClick.bind(this);
   }
 
-  handleTopicClick(topicName, topicsMap){
-    // get topics map and assign selected/not selected to className
-  }
 
   handleTopicClick(topicName){
-    // CHANGE OF PLANS - WE ARE MAKING IT INTO RADIO BUTTONS
-    // REFACTOR displayTopics into displayTopic - we will only display
-    // one topic at a time.
-
     this.setState({
       displayTopic: topicName
     });
+
   }
 
   render(){
 
     let publications = getMatchingPubsByTopic(this.state.displayTopic);
     let topics = this.props.json.topics;
+    // or maybe... while you're mapping the topics, append state info
+    // to className?
+    // like className = {topic == displayTopic ? "Interactive" : "Interactive Selected"};
     let topicsMap = topics.map(
       (topic) => <Topic
-                    className="Interactive"
+                    className={topic == this.state.displayTopic ? "Interactive Selected" : "Interactive"}
                     name={topic}
                     onClick={this.handleTopicClick}
                   />
