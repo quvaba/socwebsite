@@ -159,7 +159,8 @@ li {
 
     .Name {
       font-family: $title-font;
-      color: $red-orange;
+      font-weight: 600;
+      color: black;
       &:hover{
         font-weight: bold;
       }
@@ -171,19 +172,34 @@ li {
       max-height: 25em;
     }
 
+    .FacultyRole {
+      display: inline-block;
+      font-size: 0.8em;
+      text-align: center;
+      color: rgb(129,129,129);
+    }
+
+    .FacultyContact {
+      padding-top: 20px;
+      font-size: 0.9em;
+
+      .label {
+        color: rgb(129,129,129);
+      }
+    }
+
     .DegreeYear {
       line-height: 1.2em;
       display: inline-block;
       padding: 0 5px;
       font-size: 0.8em;
       text-align: center;
-      color: $beige;
-      background-color: $red-orange;
+      color: rgb(129,129,129);
     }
 
     .CurrentRole {
       font-size: 0.9em;
-      font-weight: 600;
+      font-weight: bold;
       font-style: italic;
     }
 
@@ -191,6 +207,47 @@ li {
       font-size: 0.9em;
       padding-bottom: 30px;
     }
+}
+.Alumni {
+  .ImageContainer {
+    width: 120px;
+    height: 120px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 5px;
+    box-shadow: $light-shadow;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+
+  .Name {
+    font-family: $title-font;
+    font-weight: 600;
+    color: black;
+    &:hover{
+      font-weight: bold;
+    }
+  }
+
+  .Image {
+    width: 100%;
+    max-width: 25em;
+    max-height: 25em;
+  }
+
+  .DegreeYear {
+    line-height: 1.2em;
+    display: inline-block;
+    font-size: 0.8em;
+    text-align: center;
+    color: rgb(129,129,129);
+  }
+
+  .CurrentRole {
+    font-size: 0.9em;
+    font-weight: bold;
+    font-style: italic;
+  }
 }
 
 // Home
