@@ -1,10 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {getMatchingAuthors} from '../../utils/utils.js'
-import DefaultPic from '../../data/siebel.jpg';
+import { Topic } from './Topic';
+import DefaultPic from '../../data/images/siebel.jpg';
 
 export const Publication = (props) => {
   let authorList = getMatchingAuthors(props.authors);
+
+  const handleTopicClick = (topicName) => {
+    props.handleTopicClick(topicName);
+  }
 
   return(
     <div className="Publication">
@@ -17,10 +22,18 @@ export const Publication = (props) => {
         className = "Image"
       />
       <span className="Info">
-        <a href={props.url} className="Title">{props.title}</a>
-        <span className="Conference">{props.conference}</span>
+        <div>
+          <span><a href={props.url} className="Title">{props.title}</a></span>
+          <span className="Conference">{props.conference}</span>
+        </div>
+        <div className="AuthorList">{authorList}</div>
         <div className="Description">{props.description}</div>
-        <div>{authorList}</div>
+        <div>
+          {props.topics.map(
+             (topic) => <span className="Topic Secondary"> {topic} </span>
+          )}
+        </div>
+
       </span>
     </div>
   );
@@ -36,5 +49,6 @@ Publication.propTypes = {
   url: PropTypes.string.isRequired,
   authors: PropTypes.array.isRequired,
   awards: PropTypes.array,
-  themes: PropTypes.array
+  topics: PropTypes.array,
+  handleTopicClick: PropTypes.func.isRequired
 }

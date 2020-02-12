@@ -15,8 +15,9 @@ $beige: #fff5ed;
 $body-font: "Raleway";
 $title-font: "Montserrat";
 
-$project-image-width: 250px;
-$project-image-height: 180px;
+$project-image-width: 150px;
+$project-image-height: 100px;
+$topic-nav-width: 300px;
 
 $light-shadow: 0 2px 3px rgba(0, 0, 0, 0.16), 0 2px 3px rgba(0, 0, 0, 0.23);
 
@@ -27,11 +28,12 @@ $light-shadow: 0 2px 3px rgba(0, 0, 0, 0.16), 0 2px 3px rgba(0, 0, 0, 0.23);
 
 body {
   background: white;
-  line-height: 1.8em;
+  line-height: 1.4em;
 }
 
 a {
   text-decoration: none;
+  color: inherit;
 }
 
 li {
@@ -49,17 +51,10 @@ li {
   text-align: left;
   font-family: $body-font;
   color: black;
-  margin-top: 2em;
+  margin-top: 3em;
 }
 
 // Main navigation
-
-.NavBrand{
-  font-family: $title-font;
-  font-weight: 700;
-  font-size: 1.5em;
-  margin: .5em;
-}
 
 .NavBar{
   font-family: $title-font;
@@ -80,20 +75,14 @@ li {
   }
 }
 
-// ListPage
-
-.ListPage {
-  min-height: 100vh;
-}
-
-
 // Publication
 
 .Publication {
 
     display: inline-grid;
-    grid-template-columns: [left-edge] $project-image-width [image] 40px [between] 60% [right-edge];
-    margin-top: 2em;
+    grid-template-columns: [ll] 15% [topic] $topic-nav-width [left-edge] $project-image-width
+                           [image] 40px [between] 30% [right-edge] auto [rr];
+    margin-bottom: 2em;
 
     .Image {
       width: $project-image-width;
@@ -114,15 +103,14 @@ li {
         font-family: $title-font;
         font-weight: 600;
 
-        font-size: 1.1em;
+        font-size: 1em;
         border-bottom: 1px solid black;
         color: $main-blue;
       }
 
       .Conference {
-        margin-left: 10px;
-        background-color: $main-blue;
-        color: $beige;
+        margin-left: 4px;
+        font-style: italic;
         padding: 3px;
       }
 
@@ -130,11 +118,56 @@ li {
         margin-top: 1em;
       }
 
-      .Author {
-        margin-right: .5em;
+      .AuthorList{
+        background-color: $main-blue;
+        padding: 3px;
+        padding-left: 10px;
+
+        .Author {
+          margin-right: .5em;
+          color: $beige;
+        }
+
       }
+
     }
 
+}
+
+// Topic
+
+.Topic {
+  color: $red-orange;
+  margin-bottom: 5px;
+
+  &.Interactive {
+    border: 1px solid $red-orange;
+    border-radius: 15px;
+    padding: 5px;
+
+    &:hover{
+      background-color: fade-out($red-orange, .8);
+      cursor: pointer;
+    }
+
+    &.Selected {
+      background-color: $red-orange;
+      color: white;
+    }
+  }
+
+  &.Secondary {
+    &:before{
+      content: "#";
+    }
+  }
+}
+
+// TopicNav
+
+.TopicNav {
+  margin-left: $topic-nav-width;
+  position: fixed;
 }
 
 // People
@@ -196,7 +229,7 @@ li {
 // Home
 
 .Home{
-    margin: 5em;
+    margin: 1em 15em 2em 15em;
     margin-top: 1em;
 
     .Top{
@@ -207,12 +240,9 @@ li {
       margin-top: 3em;
     }
 
-    .FeaturedProjects{
-      margin: 1em;
-      width: 70vw;
+    .WhatsNew{
     }
 }
-
 
 
 /****************************/
