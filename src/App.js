@@ -2,12 +2,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Component } from 'react';
 import './App.scss';
 
-import pagesJson from './data/pages.json';
-import coursesJson from './data/courses.json';
-import peopleJson from './data/people.json';
-import karrieJson from './data/karrie.json';
-import projectsJson from './data/projects.json';
-import publicationsJson from './data/publications.json';
+import pagesJson from './data/json/pages.json';
+import coursesJson from './data/json/courses.json';
+import peopleJson from './data/json/people.json';
+import karrieJson from './data/json/karrie.json';
+import projectsJson from './data/json/projects.json';
+import publicationsJson from './data/json/publications.json';
 
 import {getMatchingAuthors} from './utils/utils.js'
 import {getMatchingPublications} from './utils/utils.js'
@@ -16,6 +16,7 @@ import {getTopPublications} from './utils/utils.js'
 import Grid from '@material-ui/core/Grid';
 
 import { PeopleList, PublicationList, CourseList, ProjectList } from './components/ListComponents';
+import { ListPage, PublicationListContainer } from './containers/ListContainers';
 
 /**
  * App - contains everything. Wraps a NavBar and a page contents.
@@ -52,7 +53,7 @@ class App extends Component {
       case "People":
         pageContents = <ListPage json={peopleJson} pageType = "People"/>;
         break;
-      case "Publications":
+      case "Research":
         pageContents = <ListPage json={publicationsJson} pageType = "Publications"/>;
         break;
       case "Courses":
@@ -114,9 +115,6 @@ class NavBar extends Component {
 
     return(
       <div className="NavBar">
-          <div className="NavBrand">
-            <a href="/"> [ SOCIAL SPACES ] </a>
-          </div>
           {pages}
       </div>
     );
@@ -158,47 +156,6 @@ class NavOption extends Component {
 
 *****************************************************************************************************************/
 
-/* ListPage - includes People, Projects, Publications, Karrie, and Courses
- *
- * [PROPS] json - the json to be read from
- *         pageType - the type of page to render
- */
-class ListPage extends Component {
-  constructor(props){
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick(projectTitle){
-    this.props.onClick(projectTitle);
-  }
-
-  render(){
-    let entryList;
-
-    switch (this.props.pageType) {
-      case "People":
-        entryList = <PeopleList json={this.props.json} />;
-        break;
-
-      case "Publications":
-        entryList = <PublicationList json={this.props.json} />
-        break;
-
-      case "Courses":
-        entryList = <CourseList json={this.props.json} />
-        break;
-
-      default:
-
-    }
-
-    return(
-      <div className="ListPage">{entryList}</div>
-    );
-  }
-}
-
 
 /* HomePage - The home page of the social spaces website.
  *
@@ -214,7 +171,7 @@ class HomePage extends Component {
     );
 
     let projList = featuredProjects.map(
-      (project) => <li>
+      (project) => <li key={featuredProjects.indexOf(project)}>
           <div>{project.title}</div>
           <div>{project.description}</div>
           <div> {getTopPublications(2, project.projectId, publicationsJson)} </div>
@@ -238,8 +195,8 @@ class HomePage extends Component {
 
         <hr />
 
-        <div className="FeaturedProjects">
-          <h2>Featured Projects</h2>
+        <div className="WhatsNew">
+          <h2>What's New</h2>
           {projList}
         </div>
 

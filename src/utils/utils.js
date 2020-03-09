@@ -1,11 +1,11 @@
 import React from 'react';
-import peopleJson from '../data/people.json';
+import peopleJson from '../data/json/people.json';
+import publicationsJson from '../data/json/publications.json';
 
 // Returns a JSX div of spans of authors that match the netIds given
 // [PARAMS] peopleJson - the json to find matching data from
 //          netIds - the array of netIds to be matched
 export function getMatchingAuthors(netIds){
-  console.log(netIds);
   let allAuthors = peopleJson.entries;
   let entryAuthors = allAuthors.filter(function(value, index, arr){
     return (netIds.includes(value.netId));
@@ -71,4 +71,51 @@ export function getMatchingPublications(projectId, publicationsJson){
   return(
     <div> {pubList} </div>
   );
+}
+
+
+// topics: array of strings
+// OUTDATED - this function returns the UNION of publications
+//            that contain one or more of the topics
+export function getMatchingPubsByTopics(topics){
+  let allPublications = publicationsJson.entries;
+  let matchingPubs = allPublications.filter(
+    function(publication){
+      let hasMatch = 0;
+      topics.forEach(function(topic){
+        hasMatch += publication.topics.includes(topic);
+      });
+      return (hasMatch > 0);
+    }
+  );
+
+  matchingPubs.sort((a, b) => (a.year < b.year) ? 1 : -1);
+
+  return matchingPubs;
+}
+
+// topic: a string representing a topic, or "ALL" for all topics
+// CURRENT - returns all publications that have this topic tagged,
+//           or every publication in the json if topic === "ALL"
+export function getMatchingPubsByTopic(topic){
+  let allPublications = publicationsJson.entries;
+
+  console.log(topic);
+
+  if (topic === "ALL"){
+    return allPublications;
+  }
+
+  let matchingPubs = allPublications.filter(
+    function(publication){
+      if (publication.topics.includes(topic)){
+        return true;
+      }
+      return false;
+    }
+  );
+
+  matchingPubs.sort((a, b) => (a.year < b.year) ? 1 : -1);
+
+  return matchingPubs;
 }

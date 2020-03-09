@@ -1,7 +1,10 @@
 {
   "pages":[
     {
-      "title": "Publications"
+      "title": "Home"
+    },
+    {
+      "title": "Research"
     },
     {
       "title": "People"
